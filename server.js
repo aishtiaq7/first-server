@@ -10,14 +10,21 @@ app.set('views', __dirname + '/views');
 app.engine('ejs', require('ejs').renderFile);
 
 app.get("/", function (req, res) {
-
-    // var sub = 'testing out ejs variables';
-    // res.render("index.ejs", {subreddit: sub});
+    console.log('get - / logs');
+    
+    
     var ejsVar = 'awshaf'; 
     res.render('index.ejs', { ejsVar }); 
-    // res.send('hello world');
-    // res.render(__dirname.toString() +'./public/index.html');
-    // res.sendFile(path.join())
+    
+    
+});
+app.get("/gg", function (req, res) {
+    console.log('get - / gg');
+
+    var ejsVar = 'gg'; 
+    res.render('index.ejs', { ejsVar }); 
+    
+    
 });
 
 app.listen(port);
