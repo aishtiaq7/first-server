@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: black;
+    /* color: blanchedalmond; */
+}
+h1{
+    font-size: 34px;
+}
 /* :root{
     
 }
