@@ -9,6 +9,10 @@ class App extends Component {
   componentDidMount(){
     fetch('http://localhost:3001/users')
       .then(res => res.json())
+      .then(res => {
+        console.log(res); 
+        return res;
+      })
       .then(users => this.setState({users}))
 
     //   .then(res = res.json())
@@ -23,7 +27,9 @@ class App extends Component {
           <ul>
             {
               this.state.users.map((user) => (
-                <li key={user.id}>{user.username}</li>
+                
+                <li key={user.id}>{ `${user.id} ------ ${user.username}`}</li>
+        
               ))
             }
           </ul>
