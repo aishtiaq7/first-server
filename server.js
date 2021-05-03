@@ -16,7 +16,7 @@ app.get("/", function (req, res) {
     console.log('get - / gg');
     var ejsVar = 'HELLO WORLD'; 
     res.render('index.ejs', { ejsVar }); 
-});
+}); 
 
 
 app.get("/users", function (req, res) {
