@@ -17,18 +17,19 @@ class App extends Component {
 
   render(){  
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <ul>
-              {this.state.users.map(user =>
-                <li key={user.id}>{user.username}</li>)
-              }
-             
-            </ul>
-          </header>
-        </div>
-      );
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <ul>
+            {
+              this.state.users.map((user) => (
+                <li key={user.id}>{user.username}</li>
+              ))
+            }
+          </ul>
+        </header>
+      </div>
+    );
   }
 }
 
