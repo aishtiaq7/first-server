@@ -5,7 +5,6 @@ const path = require ('path');
 const port = 3001; 
 console.log('\tServer started at port:' + port);
 
-// console.log('__dirname', __dirname);
 
 app.set('views',path.join(__dirname, "views")); 
 app.set("view engine", 'ejs');
@@ -20,7 +19,7 @@ app.get("/", function (req, res) {
 
 
 app.get("/users", function (req, res) {
-    console.log('get - / logs');
+    console.log('get - / users');
     // var ejsVar = 'USEssssAME'; 
     // res.render('index.ejs', { ejsVar }); 
 

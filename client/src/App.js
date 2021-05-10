@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
+
 class App extends Component {
 
   state = {users: []}
@@ -14,9 +15,6 @@ class App extends Component {
         return res;
       })
       .then(users => this.setState({users}))
-
-    //   .then(res = res.json())
-    //   .then(users => this.setState({users}))
   }
 
   render(){  
@@ -27,9 +25,7 @@ class App extends Component {
           <ul>
             {
               this.state.users.map((user) => (
-                
                 <li key={user.id}>{ `${user.id} ------ ${user.username}`}</li>
-        
               ))
             }
           </ul>
