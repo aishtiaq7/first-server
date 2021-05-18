@@ -12,7 +12,7 @@ app.set("view engine", 'ejs');
 app.use(express.static(__dirname +"/public"));
 
 app.get("/", function (req, res) {
-    console.log('get - / gg');
+    console.log('get - /');
     var ejsVar = 'HELLO WORLD'; 
     res.render('index.ejs', { ejsVar }); 
 }); 

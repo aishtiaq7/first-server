@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "startDev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
   "author": "Awshaf Ishtiaque",
@@ -14,6 +15,7 @@
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "heroku": "^7.53.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0"
   },
