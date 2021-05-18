@@ -1,1 +1,1 @@
-"service": "npm install && node server.js && cd client && npm install"
+"service": "npm install && node server.js && cd client && npm install && npm start"
