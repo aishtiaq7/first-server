@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import {Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <Router>
-    <Route exact path='/users'>
-      <App />
-    </Route> 
-  </Router>,
-  document.getElementById('root')
-); 
-
+  <App />, 
+  document.getElementById("root")
+  );

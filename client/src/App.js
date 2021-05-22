@@ -1,38 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-import { Component } from 'react';
+import "./App.css";
+import React from "react";
+import { Form, Button, Container } from "react-bootstrap";
 
+export default function App() {
+  return (
+    <Container className="mt-5">
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-class App extends Component {
-
-  state = {users: []}
-
-  componentDidMount(){
-    fetch('http://localhost:3001/users')
-      .then(res => res.json())
-      .then(res => {
-        console.log(res); 
-        return res;
-      })
-      .then(users => this.setState({users}))
-  }
-
-  render(){  
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <ul>
-            {
-              this.state.users.map((user) => (
-                <li key={user.id}>{ `${user.id} ------ ${user.username}`}</li>
-              ))
-            }
-          </ul>
-        </header>
-      </div>
-    );
-  }
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
+  );
 }
-
-export default App;
