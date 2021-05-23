@@ -1,19 +1,7 @@
 import { React, useRef, useEffect, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 
-    export default function Login() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-
-    useEffect(() => {
-        console.log(email);
-        console.log(password);
-    }, [email,password]);
-
-    const handleLogin = ()=>{
-        console.log('email:', email);
-        console.log('password:', password);
-    }
+    export default function Login({email,password,handleLogin, setPassword, setEmail}) {
 
     return (
         <Container className="mt-5">
