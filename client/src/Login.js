@@ -1,11 +1,11 @@
-import { React, useRef, useEffect, useState } from "react";
+import { React, useRef, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const credentials = useRef({e:'defaulut email', p:'default password'})
+    const credentials = useRef({email:'defaulut email', password:'default password'})
 
     console.log('\n')
     console.log("re-render");
@@ -14,13 +14,17 @@ export default function Login() {
 
     console.log(credentials.current)
 
-    const handleLogin = (emaill, passwordd) => {
-        console.log("email:", emaill);
-        console.log("password:", passwordd);
+    const handleLogin = () => {
+        console.log("email:", email);
+        console.log("password:", password);
 
-        credentials.current.e = email;
-        credentials.current.p = password;
+        credentials.current.email = email;
+        credentials.current.password = password;
         console.log(credentials.current);
+
+        
+        setEmail('');
+        setPassword('');
 
     };
 
@@ -53,7 +57,7 @@ export default function Login() {
                     type="submit"
                     onClick={(e) => {
                         e.preventDefault();
-                        handleLogin(email, password);
+                        handleLogin();
                     }}
                     >
                     Submit
