@@ -1,12 +1,8 @@
 import "./App.css";
-import { React} from "react";
+import { React } from "react";
 
 import Login from "./Login";
-
-
-
 
 export default function App() {
   return <Login />;
 }
-
