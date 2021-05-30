@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-
+import { Redirect, useHistory } from "react-router-dom";
 import firebase from "firebase";
+
+
 var firebaseConfig = {
   apiKey: "AIzaSyD046QyLkn90eFMNwV1mhWhC-hw_6RhQuY",
   authDomain: "first-server-auth.firebaseapp.com",
@@ -10,52 +12,34 @@ var firebaseConfig = {
   messagingSenderId: "692608182980",
   appId: "1:692608182980:web:3f5a2509c511cdf36bb791",
 };
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 //Firebase AUTH change
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
     var uid = user.uid;
     console.log("\tAUTH CHANGE - Signed IN:");
     console.log(uid);
+    // setIsLoggedIn(true);
 
-    // ...
   } else {
     console.log("\tAUTH CHANGE - NOTTTT  Signed IN:");
-    // User is signed out
-    // ...
+    // setIsLoggedIn(false);
+
+    // history.push("/userprofile");
+    // <Redirect to="/" />
   }
 });
 
-function firebasefunction(email, password) {
-  const loginPromise = firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log("..signed in with:");
-      console.log(user);
-      return userCredential;
-      // ...
-    })
-    .catch((error) => {
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    });
-
-  loginPromise.catch((err) => {
-    console.log("hey error loggin in");
-    console.log(err);
-  });
-}
+// function firebasefunction(email, password) {
+  
+// }
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const history = useHistory();
 
   const credentials = useRef({
     email: "defaulut email",
@@ -63,10 +47,9 @@ export default function Login() {
   });
 
   console.log("\n");
-//   console.log("re-render");
   console.log("email:", email);
   console.log("password:", password);
-  console.log('credendials', credentials.current);
+  console.log("credendials", credentials.current);
 
   const handleLogin = () => {
     console.log("email:", email);
@@ -76,25 +59,47 @@ export default function Login() {
     credentials.current.password = password;
     console.log(credentials.current);
 
+
+    const loginPromise = firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log("..signed in with:");
+        console.log(user);
+        console.log('setting isLoggedIn'); 
+        setIsLoggedIn(true);
+        return userCredential;
+      })
+      .catch((error) => {
+        console.error('cauth error in signing in:', error)
+      });
+    loginPromise.then( uidPromise =>{
+      if(uidPromise == null){
+        setIsLoggedIn(false);
+      }
+    })
+
+    
     setEmail("");
     setPassword("");
 
-    firebasefunction(email, password);
   };
 
   const handleLogout = () => {
     firebase
-        .auth()
-        .signOut()
-        .then(() => {
-            // Sign-out successful.
-            console.log('logged out user');
-        })
-        .catch((error) => {
-            // An error happened.
-            console.log('error logging out');
-            console.log(error);
-        });
+      .auth()
+      .signOut()
+      .then(() => {
+        // Sign-out successful.
+        console.log("logged out user");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("error logging out");
+        console.log(error);
+      });
   };
 
   return (
@@ -143,7 +148,9 @@ export default function Login() {
         >
           Logout
         </Button>
-      </Form>
+      </Form>{
+        isLoggedIn && history.push("/userprofile")
+      }
     </Container>
   );
 }

@@ -8,7 +8,9 @@ import UserProfile from './UserProfile';
 function App() {
   return (<Router>
     <Switch>
-      <Route exact path='/'><Login/></Route>
+      <Route exact path='/'>
+        <Login/>
+      </Route>
     </Switch>
     <Switch>
       <Route exact path='/userProfile'>
